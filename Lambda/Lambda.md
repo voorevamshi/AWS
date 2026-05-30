@@ -1,4 +1,4 @@
 # Lambda 
 
-- [Lambda function event](event.md)
-- [Lambda function context](context.md)
+- [Lambda Event Summary](event.md)
+- [Lambda Context Summary](context.md)
