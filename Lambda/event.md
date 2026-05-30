@@ -5,12 +5,10 @@ The **Event** object serves as the input payload sent to your Lambda function. I
 ### Key Attributes
 
 -   **Event Source:** `aws:s3`
-    
 -   **Event Name:** `ObjectCreated:Put`
-    
 -   **Triggered by:** S3 Bucket `demos3triggerambda`
-    
 -   **File Key:** `download6.jpg`
+
 ```json
 {
     "Records": [
