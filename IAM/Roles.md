@@ -152,7 +152,7 @@ When a request is made, AWS evaluates all applicable policies:
 2.  **Explicit Deny:** If any policy contains a `Deny`, the request is rejected immediately.
 3.  **Explicit Allow:** If no `Deny` exists and there is an `Allow`, access is granted.
 
-### Troubleshooting Order: [TroubleShoot RealTime IAM Role Example](TroubleShoot_RealTime_IAM_Role_Examplel.md)
+### Troubleshooting Order: [TroubleShoot RealTime IAM Role Example](TroubleShoot_RealTime_IAM_Role_Example.md)
 1.  **SCP** (Organization level)
 2.  **Permissions Boundary** (Identity level)
 3.  **Identity/Resource-based Policies** (Permission level)
