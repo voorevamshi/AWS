@@ -34,19 +34,32 @@ Imagine you are a Developer (the **Identity**) trying to delete a file in a crit
 
  ```
     {
-	  "Version": "2012-10-17",
-	  "Statement": [
-	    {
-	      "Sid": "AllowS3ReadWrite",
-	      "Effect": "Allow",
-	      "Action": [
-	        "s3:GetObject",
-	        "s3:PutObject"
-	      ],
-	      "Resource": "arn:aws:s3:::my-developer-bucket/*"
-	    }
-	  ]
-	}
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowOnlyEC2AndLambda",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:*",
+        "lambda:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowOnlyEC2AndLambda",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:*",
+        "lambda:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
 ```
     
 #### Layer 3: Identity-Based Policies (The "Job Description")
