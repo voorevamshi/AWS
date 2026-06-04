@@ -46,19 +46,6 @@ Imagine you are a Developer (the **Identity**) trying to delete a file in a crit
       "Resource": "*"
     }
   ]
-}{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowOnlyEC2AndLambda",
-      "Effect": "Allow",
-      "Action": [
-        "ec2:*",
-        "lambda:*"
-      ],
-      "Resource": "*"
-    }
-  ]
 }
 ```
     
