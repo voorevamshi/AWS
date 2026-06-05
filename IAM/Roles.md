@@ -123,6 +123,43 @@ When a request is made, AWS evaluates all applicable policies:
 2.  **Explicit Deny:** If any policy contains a `Deny`, the request is rejected immediately.
 3.  **Explicit Allow:** If no `Deny` exists and there is an `Allow`, access is granted.
 
+
+### Real-Time Scenario: The "Junior Admin" Guardrail
+
+Imagine you have a Junior System Administrator who needs "Full Admin" access to manage EC2 instances, but you want to ensure they never accidentally delete a critical "Production-Backup" S3 bucket.
+
+-   **The Problem:** If you just give them `AdministratorAccess`, they have the power to delete anything.
+    
+-   **The Solution:** You apply an **Inline Policy** (or a Permission Boundary) to their user profile that includes an **Explicit Deny** for that specific resource.
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowFullAdmin",
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "FinalLockdown",
+      "Effect": "Deny",
+      "Action": "s3:DeleteBucket",
+      "Resource": "arn:aws:s3:::production-backup-bucket"
+    }
+  ]
+}
+```
+**Why this works:** * The first statement (`"Effect": "Allow", "Action": "*"`) grants them _everything_.
+-   However, the second statement (`"Effect": "Deny"`) acts as the "Override Switch."
+-   AWS evaluates all policies. It sees the `Allow` but then finds the `Deny` for that specific bucket. **The Deny wins.**
+
+**Exam Preparation Tip:** Remember the **Evaluation Logic**:
+1.  Default Deny.    
+2.  Explicit Deny overrides everything.
+3.  Explicit Allow grants access if no Deny exists.
+
+
 ### Troubleshooting Order: [TroubleShoot RealTime IAM Role Example](TroubleShoot_RealTime_IAM_Role_Example.md)
 1.  **SCP** (Organization level)
 2.  **Permissions Boundary** (Identity level)
