@@ -79,9 +79,14 @@ Selecting the right purchasing model directly impacts your operational architect
 
 #### Corrected & Production-Ready User Data Script
 
+sudo -i launches a clean, isolated root environment matching the system administrator's profile, 
+whereas sudo su grants root access while carrying over your current user's environmental settings.
 Bash
 
 ```
+[ec2-user@ip-16-112-192-197 ~]$ sudo -i
+[root@ip-16-112-192-197 ~]#
+
 #!/bin/bash
 # Update the package manager repositories safely
 yum update -y
@@ -185,15 +190,9 @@ ssh -i "sample.pem" ec2-user@35.172.219.8
     
 
 ## Mistakes / Corrections Found
-
--   **Typo in Curl Tool Commands**: The raw notes explicitly typed `Scurl http://...`. The leading `S` was a typo or terminal artifact. Corrected to standard executable command `curl`.
     
 -   **Outdated IMDS Reference**: The original note showcased an unauthenticated request structure (`curl http://169.254.169.254/latest/meta-data/`). This is an `IMDSv1` implementation. This has been updated to the current AWS best practice of using **IMDSv2 tokens** to align with AWS Certified Developer security criteria.
-    
--   **Typo in Commands**: The note contained `$sudo-i`. The correct syntactic command requires a space: `sudo -i` or `sudo su -`.
-    
--   **Typo**: "power shall" was corrected to the correct tool name: **PowerShell**.
-    
+        
 
 ## Discussion Points / Clarifications Needed
 
