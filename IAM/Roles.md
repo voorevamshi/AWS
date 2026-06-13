@@ -9,7 +9,7 @@ An IAM role is an identity that defines a set of permissions for making AWS serv
     * **No Long-term Credentials:** Roles are not associated with a specific user or group; they provide temporary credentials.
     * **Trust Entities:** Define who can assume the role (e.g., AWS Services like EC2, Lambda).
     * **EC2 Instances:** An EC2 instance can only have **ONE** IAM role attached at a time (via an Instance Profile).
-
+      
 ## 2. JSON Policy Structure
 Most policies are stored in AWS as JSON documents.
 
@@ -40,7 +40,7 @@ ARNs uniquely identify AWS resources.
 * **Example:** `arn:aws:iam::891377051037:role/EC2-53`
 
 ## 4. Policy Types
-1.  **Identity-based:** Attached to users, groups, or roles.
+1.  **Identity-based:** Attached to users, groups, or roles. [To Know IAM Users and Groups form CLI](iamUsersGroups.md)
 2.  **Resource-based:** Attached directly to resources (e.g., S3 Bucket Policy).
 3.  **Permissions Boundaries:** Defines the maximum permissions an identity can have.
 4.  **Organizations SCPs:** Guardrails for an entire AWS account.
