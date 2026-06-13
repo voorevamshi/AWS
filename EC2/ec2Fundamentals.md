@@ -167,6 +167,7 @@ Using the incorrect username will result in a `Permission denied (publickey)` fa
 
 Ensure permissions on your private key file are locked down (on Unix systems, run `chmod 400 sample.pem` so that it is readable only by the owner).
 
+- [OpenSSH Security precaution](OpenSSH_SecurityPrecaution.md)
 Bash
 
 ```
