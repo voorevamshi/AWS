@@ -4,6 +4,6 @@
 - [IAM](IAM/iam.md)
 - [SQS](SQS/sqs.md)
 - [SNS](SNS/sns.md)
-- [CLOUD WATCH](CLOUD_WATCH/cloudWatch.md)
+- [Cloud Watch](Cloud_Watch/cloudWatch.md)
 - [Lambda](Lambda/Lambda.md)
 - [In28Minutes Topics](Topics/in28MinutesTopics.md)
