@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'CloudFormation template to launch an Amazon Linux 2023 EC2 instance in ap-south-2 (Hyderabad).'
+
+Parameters:
+  InstanceType:
+    Description: 'EC2 Instance Type'
+    Type: String
+    Default: 't3.micro'
+    AllowedValues:
+      - t3.micro
+      - t3.small
+      - m6g.large
+    ConstraintDescription: 'Must be a valid EC2 instance type supported in ap-south-2.'
+
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64'
+    Description: 'Automatically fetches the latest Amazon Linux 2023 AMI ID for x86_64 architecture.'
+
+  KeyName:
+    Description: 'Name of an existing EC2 KeyPair to enable SSH access'
+    Type: 'AWS::EC2::KeyPair::KeyName'
+    ConstraintDescription: 'Must be the name of an existing EC2 KeyPair created in ap-south-2.'
+
+Resources:
+  # 1. Security Group allowing SSH (Port 22)
+  EC2SecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: 'Enable SSH access via port 22'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0 # Consider narrowing this to your specific IP range for better security
+
+  # 2. EC2 Instance Definition
+  LinuxInstance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: !Ref LatestAmiId
+      KeyName: !Ref KeyName
+      SecurityGroups:
+        - !Ref EC2SecurityGroup
+      Tags:
+        - Key: Name
+          Value: 'ap-south-2-linux-box'
+        - Key: Environment
+          Value: 'Development'
+
+Outputs:
+  InstanceId:
+    Description: 'The Instance ID of the newly created EC2 instance'
+    Value: !Ref LinuxInstance
+
+  PublicDNS:
+    Description: 'The Public DNS of the EC2 instance'
+    Value: !GetAtt LinuxInstance.PublicDnsName
+
+  PublicIP:
+    Description: 'The Public IP of the EC2 instance'
+    Value: !GetAtt LinuxInstance.PublicIp
