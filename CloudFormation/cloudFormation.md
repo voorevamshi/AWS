@@ -1,4 +1,4 @@
 [← Back to README](../README.md)
 
 # Projects
-[EC2 Project](Projects/ec2/normalInstance.md)
+[EC2 Normal Instance](Projects/ec2/normalInstance.yaml)
