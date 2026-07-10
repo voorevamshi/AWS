@@ -7,4 +7,5 @@
 - [SNS](SNS/sns.md)
 - [Cloud Watch](Cloud_Watch/cloudWatch.md)
 - [Lambda](Lambda/Lambda.md)
+- [CloudFormation](CloudFormation/cloudFormation.md)
 - [In28Minutes Topics](Topics/in28MinutesTopics.md)
